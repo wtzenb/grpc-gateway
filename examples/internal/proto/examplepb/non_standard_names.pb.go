@@ -248,7 +248,8 @@ func (m *NonStandardUpdateRequest) GetUpdateMask() *field_mask.FieldMask {
 	return nil
 }
 
-// NonStandardMessageWithJSONNames maps odd field names to odd JSON names for maximum confusion.
+// NonStandardMessageWithJSONNames maps odd field names to odd JSON names for
+// maximum confusion.
 type NonStandardMessageWithJSONNames struct {
 	// Id represents the message identifier.
 	Id                   string                                 `protobuf:"bytes,1,opt,name=id,json=ID,proto3" json:"id,omitempty"`
@@ -547,7 +548,8 @@ const _ = grpc.SupportPackageIsVersion4
 type NonStandardServiceClient interface {
 	// Apply field mask to empty NonStandardMessage and return result.
 	Update(ctx context.Context, in *NonStandardUpdateRequest, opts ...grpc.CallOption) (*NonStandardMessage, error)
-	// Apply field mask to empty NonStandardMessageWithJSONNames and return result.
+	// Apply field mask to empty NonStandardMessageWithJSONNames and return
+	// result.
 	UpdateWithJSONNames(ctx context.Context, in *NonStandardWithJSONNamesUpdateRequest, opts ...grpc.CallOption) (*NonStandardMessageWithJSONNames, error)
 }
 
@@ -581,7 +583,8 @@ func (c *nonStandardServiceClient) UpdateWithJSONNames(ctx context.Context, in *
 type NonStandardServiceServer interface {
 	// Apply field mask to empty NonStandardMessage and return result.
 	Update(context.Context, *NonStandardUpdateRequest) (*NonStandardMessage, error)
-	// Apply field mask to empty NonStandardMessageWithJSONNames and return result.
+	// Apply field mask to empty NonStandardMessageWithJSONNames and return
+	// result.
 	UpdateWithJSONNames(context.Context, *NonStandardWithJSONNamesUpdateRequest) (*NonStandardMessageWithJSONNames, error)
 }
 

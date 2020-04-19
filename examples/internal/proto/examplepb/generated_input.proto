@@ -10,11 +10,10 @@ import "examples/internal/proto/examplepb/a_bit_of_everything.proto";
 
 // Defines some more operations to be added to ABitOfEverythingService
 service GeneratedService {
-	rpc Create(ABitOfEverything) returns (google.protobuf.Empty) {
-		option (google.api.http) = {
-			post: "/v1/example/a_bit_of_everything/generated_create"
-			body: "*"
-		};
-	}
-
+  rpc Create(ABitOfEverything) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post : "/v1/example/a_bit_of_everything/generated_create"
+      body : "*"
+    };
+  }
 }

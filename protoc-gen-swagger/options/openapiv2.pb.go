@@ -132,7 +132,8 @@ func (SecurityScheme_Type) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_ba35ad8af024fb48, []int{11, 0}
 }
 
-// Required. The location of the API key. Valid values are "query" or "header".
+// Required. The location of the API key. Valid values are "query" or
+// "header".
 type SecurityScheme_In int32
 
 const (
@@ -199,19 +200,22 @@ func (SecurityScheme_Flow) EnumDescriptor() ([]byte, []int) {
 
 // `Swagger` is a representation of OpenAPI v2 specification's Swagger object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#swaggerObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#swaggerObject
 //
 // TODO(ivucica): document fields
 type Swagger struct {
 	Swagger string `protobuf:"bytes,1,opt,name=swagger,proto3" json:"swagger,omitempty"`
 	Info    *Info  `protobuf:"bytes,2,opt,name=info,proto3" json:"info,omitempty"`
 	Host    string `protobuf:"bytes,3,opt,name=host,proto3" json:"host,omitempty"`
-	// `base_path` is the common prefix path used on all API endpoints (ie. /api, /v1, etc.). By adding this,
-	// it allows you to remove this portion from the path endpoints in your Swagger file making them easier
-	// to read. Note that using `base_path` does not change the endpoint paths that are generated in the resulting
-	// Swagger file. If you wish to use `base_path` with relatively generated Swagger paths, the
-	// `base_path` prefix must be manually removed from your `google.api.http` paths and your code changed to
-	// serve the API from the `base_path`.
+	// `base_path` is the common prefix path used on all API endpoints (ie. /api,
+	// /v1, etc.). By adding this, it allows you to remove this portion from the
+	// path endpoints in your Swagger file making them easier to read. Note that
+	// using `base_path` does not change the endpoint paths that are generated in
+	// the resulting Swagger file. If you wish to use `base_path` with relatively
+	// generated Swagger paths, the `base_path` prefix must be manually removed
+	// from your `google.api.http` paths and your code changed to serve the API
+	// from the `base_path`.
 	BasePath             string                    `protobuf:"bytes,4,opt,name=base_path,json=basePath,proto3" json:"base_path,omitempty"`
 	Schemes              []Swagger_SwaggerScheme   `protobuf:"varint,5,rep,packed,name=schemes,proto3,enum=grpc.gateway.protoc_gen_swagger.options.Swagger_SwaggerScheme" json:"schemes,omitempty"`
 	Consumes             []string                  `protobuf:"bytes,6,rep,name=consumes,proto3" json:"consumes,omitempty"`
@@ -335,9 +339,11 @@ func (m *Swagger) GetExtensions() map[string]*_struct.Value {
 	return nil
 }
 
-// `Operation` is a representation of OpenAPI v2 specification's Operation object.
+// `Operation` is a representation of OpenAPI v2 specification's Operation
+// object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#operationObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#operationObject
 //
 // TODO(ivucica): document fields
 type Operation struct {
@@ -469,7 +475,8 @@ func (m *Operation) GetExtensions() map[string]*_struct.Value {
 
 // `Response` is a representation of OpenAPI v2 specification's Response object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#responseObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#responseObject
 //
 type Response struct {
 	// `Description` is a short description of the response.
@@ -479,7 +486,8 @@ type Response struct {
 	// If `Schema` is not provided, it means there is no content to the response.
 	Schema *Schema `protobuf:"bytes,2,opt,name=schema,proto3" json:"schema,omitempty"`
 	// `Examples` gives per-mimetype response examples.
-	// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#example-object
+	// See:
+	// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#example-object
 	Examples             map[string]string         `protobuf:"bytes,4,rep,name=examples,proto3" json:"examples,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	Extensions           map[string]*_struct.Value `protobuf:"bytes,5,rep,name=extensions,proto3" json:"extensions,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	XXX_NoUnkeyedLiteral struct{}                  `json:"-"`
@@ -542,7 +550,8 @@ func (m *Response) GetExtensions() map[string]*_struct.Value {
 
 // `Info` is a representation of OpenAPI v2 specification's Info object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#infoObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#infoObject
 //
 // TODO(ivucica): document fields
 type Info struct {
@@ -634,7 +643,8 @@ func (m *Info) GetExtensions() map[string]*_struct.Value {
 
 // `Contact` is a representation of OpenAPI v2 specification's Contact object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#contactObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#contactObject
 //
 // TODO(ivucica): document fields
 type Contact struct {
@@ -694,7 +704,8 @@ func (m *Contact) GetEmail() string {
 
 // `License` is a representation of OpenAPI v2 specification's License object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#licenseObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#licenseObject
 //
 type License struct {
 	// Required. The license name used for the API.
@@ -748,7 +759,8 @@ func (m *License) GetUrl() string {
 // `ExternalDocumentation` is a representation of OpenAPI v2 specification's
 // ExternalDocumentation object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#externalDocumentationObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#externalDocumentationObject
 //
 // TODO(ivucica): document fields
 type ExternalDocumentation struct {
@@ -800,7 +812,8 @@ func (m *ExternalDocumentation) GetUrl() string {
 
 // `Schema` is a representation of OpenAPI v2 specification's Schema object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#schemaObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#schemaObject
 //
 // TODO(ivucica): document fields
 type Schema struct {
@@ -879,7 +892,8 @@ func (m *Schema) GetExample() *any.Any {
 //
 // This includes changes made by OpenAPI v2.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#schemaObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#schemaObject
 //
 // See also: https://cswr.github.io/JsonSchema/spec/basic_types/,
 // https://github.com/json-schema-org/json-schema-spec/blob/master/schema.json
@@ -887,10 +901,9 @@ func (m *Schema) GetExample() *any.Any {
 // TODO(ivucica): document fields
 type JSONSchema struct {
 	// Ref is used to define an external reference to include in the message.
-	// This could be a fully qualified proto message reference, and that type must be imported
-	// into the protofile. If no message is identified, the Ref will be used verbatim in
-	// the output.
-	// For example:
+	// This could be a fully qualified proto message reference, and that type must
+	// be imported into the protofile. If no message is identified, the Ref will
+	// be used verbatim in the output. For example:
 	//  `ref: ".google.protobuf.Timestamp"`.
 	Ref              string   `protobuf:"bytes,3,opt,name=ref,proto3" json:"ref,omitempty"`
 	Title            string   `protobuf:"bytes,5,opt,name=title,proto3" json:"title,omitempty"`
@@ -1093,7 +1106,8 @@ func (m *JSONSchema) GetType() []JSONSchema_JSONSchemaSimpleTypes {
 
 // `Tag` is a representation of OpenAPI v2 specification's Tag object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#tagObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#tagObject
 //
 // TODO(ivucica): document fields
 type Tag struct {
@@ -1148,13 +1162,15 @@ func (m *Tag) GetExternalDocs() *ExternalDocumentation {
 // `SecurityDefinitions` is a representation of OpenAPI v2 specification's
 // Security Definitions object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#securityDefinitionsObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#securityDefinitionsObject
 //
 // A declaration of the security schemes available to be used in the
 // specification. This does not enforce the security schemes on the operations
 // and only serves to provide the relevant details for each scheme.
 type SecurityDefinitions struct {
-	// A single security scheme definition, mapping a "name" to the scheme it defines.
+	// A single security scheme definition, mapping a "name" to the scheme it
+	// defines.
 	Security             map[string]*SecurityScheme `protobuf:"bytes,1,rep,name=security,proto3" json:"security,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	XXX_NoUnkeyedLiteral struct{}                   `json:"-"`
 	XXX_unrecognized     []byte                     `json:"-"`
@@ -1196,7 +1212,8 @@ func (m *SecurityDefinitions) GetSecurity() map[string]*SecurityScheme {
 // `SecurityScheme` is a representation of OpenAPI v2 specification's
 // Security Scheme object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#securitySchemeObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#securitySchemeObject
 //
 // Allows the definition of a security scheme that can be used by the
 // operations. Supported schemes are basic authentication, an API key (either as
@@ -1212,7 +1229,8 @@ type SecurityScheme struct {
 	//
 	// Valid for apiKey.
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	// Required. The location of the API key. Valid values are "query" or "header".
+	// Required. The location of the API key. Valid values are "query" or
+	// "header".
 	//
 	// Valid for apiKey.
 	In SecurityScheme_In `protobuf:"varint,4,opt,name=in,proto3,enum=grpc.gateway.protoc_gen_swagger.options.SecurityScheme_In" json:"in,omitempty"`
@@ -1332,7 +1350,8 @@ func (m *SecurityScheme) GetExtensions() map[string]*_struct.Value {
 // `SecurityRequirement` is a representation of OpenAPI v2 specification's
 // Security Requirement object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#securityRequirementObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#securityRequirementObject
 //
 // Lists the required security schemes to execute this operation. The object can
 // have multiple security schemes declared in it which are all required (that
@@ -1431,7 +1450,8 @@ func (m *SecurityRequirement_SecurityRequirementValue) GetScope() []string {
 
 // `Scopes` is a representation of OpenAPI v2 specification's Scopes object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#scopesObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#scopesObject
 //
 // Lists the available scopes for an OAuth2 security scheme.
 type Scopes struct {

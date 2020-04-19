@@ -125,13 +125,15 @@ type ABitOfEverything struct {
 	TimestampValue           *timestamp.Timestamp                `protobuf:"bytes,27,opt,name=timestamp_value,json=timestampValue,proto3" json:"timestamp_value,omitempty"`
 	// repeated enum value. it is comma-separated in query
 	RepeatedEnumValue []NumericEnum `protobuf:"varint,28,rep,packed,name=repeated_enum_value,json=repeatedEnumValue,proto3,enum=grpc.gateway.examples.internal.examplepb.NumericEnum" json:"repeated_enum_value,omitempty"`
-	// repeated numeric enum comment (This comment is overridden by the field annotation)
+	// repeated numeric enum comment (This comment is overridden by the field
+	// annotation)
 	RepeatedEnumAnnotation []NumericEnum `protobuf:"varint,32,rep,packed,name=repeated_enum_annotation,json=repeatedEnumAnnotation,proto3,enum=grpc.gateway.examples.internal.examplepb.NumericEnum" json:"repeated_enum_annotation,omitempty"`
 	// numeric enum comment (This comment is overridden by the field annotation)
 	EnumValueAnnotation NumericEnum `protobuf:"varint,33,opt,name=enum_value_annotation,json=enumValueAnnotation,proto3,enum=grpc.gateway.examples.internal.examplepb.NumericEnum" json:"enum_value_annotation,omitempty"`
 	// repeated string comment (This comment is overridden by the field annotation)
 	RepeatedStringAnnotation []string `protobuf:"bytes,34,rep,name=repeated_string_annotation,json=repeatedStringAnnotation,proto3" json:"repeated_string_annotation,omitempty"`
-	// repeated nested object comment (This comment is overridden by the field annotation)
+	// repeated nested object comment (This comment is overridden by the field
+	// annotation)
 	RepeatedNestedAnnotation []*ABitOfEverything_Nested `protobuf:"bytes,35,rep,name=repeated_nested_annotation,json=repeatedNestedAnnotation,proto3" json:"repeated_nested_annotation,omitempty"`
 	// nested object comments (This comment is overridden by the field annotation)
 	NestedAnnotation     *ABitOfEverything_Nested `protobuf:"bytes,36,opt,name=nested_annotation,json=nestedAnnotation,proto3" json:"nested_annotation,omitempty"`
@@ -507,7 +509,8 @@ func (m *ABitOfEverything_Nested) GetOk() ABitOfEverything_Nested_DeepEnum {
 	return ABitOfEverything_Nested_FALSE
 }
 
-// ABitOfEverythingRepeated is used to validate repeated path parameter functionality
+// ABitOfEverythingRepeated is used to validate repeated path parameter
+// functionality
 type ABitOfEverythingRepeated struct {
 	// repeated values. they are comma-separated in path
 	PathRepeatedFloatValue    []float32     `protobuf:"fixed32,1,rep,packed,name=path_repeated_float_value,json=pathRepeatedFloatValue,proto3" json:"path_repeated_float_value,omitempty"`

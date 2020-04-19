@@ -33,7 +33,8 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-// UnannotatedSimpleMessage represents a simple message sent to the unannotated Echo service.
+// UnannotatedSimpleMessage represents a simple message sent to the unannotated
+// Echo service.
 type UnannotatedSimpleMessage struct {
 	// Id represents the message identifier.
 	Id                   string             `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`

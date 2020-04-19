@@ -9,19 +9,22 @@ import "google/protobuf/struct.proto";
 
 // `Swagger` is a representation of OpenAPI v2 specification's Swagger object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#swaggerObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#swaggerObject
 //
 // TODO(ivucica): document fields
 message Swagger {
   string swagger = 1;
   Info info = 2;
   string host = 3;
-  // `base_path` is the common prefix path used on all API endpoints (ie. /api, /v1, etc.). By adding this,
-  // it allows you to remove this portion from the path endpoints in your Swagger file making them easier
-  // to read. Note that using `base_path` does not change the endpoint paths that are generated in the resulting 
-  // Swagger file. If you wish to use `base_path` with relatively generated Swagger paths, the 
-  // `base_path` prefix must be manually removed from your `google.api.http` paths and your code changed to 
-  // serve the API from the `base_path`.
+  // `base_path` is the common prefix path used on all API endpoints (ie. /api,
+  // /v1, etc.). By adding this, it allows you to remove this portion from the
+  // path endpoints in your Swagger file making them easier to read. Note that
+  // using `base_path` does not change the endpoint paths that are generated in
+  // the resulting Swagger file. If you wish to use `base_path` with relatively
+  // generated Swagger paths, the `base_path` prefix must be manually removed
+  // from your `google.api.http` paths and your code changed to serve the API
+  // from the `base_path`.
   string base_path = 4;
   enum SwaggerScheme {
     UNKNOWN = 0;
@@ -49,9 +52,11 @@ message Swagger {
   map<string, google.protobuf.Value> extensions = 15;
 }
 
-// `Operation` is a representation of OpenAPI v2 specification's Operation object.
+// `Operation` is a representation of OpenAPI v2 specification's Operation
+// object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#operationObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#operationObject
 //
 // TODO(ivucica): document fields
 message Operation {
@@ -73,7 +78,8 @@ message Operation {
 
 // `Response` is a representation of OpenAPI v2 specification's Response object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#responseObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#responseObject
 //
 message Response {
   // `Description` is a short description of the response.
@@ -85,14 +91,16 @@ message Response {
   // field 3 is reserved for 'headers'.
   reserved 3;
   // `Examples` gives per-mimetype response examples.
-  // See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#example-object
+  // See:
+  // https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#example-object
   map<string, string> examples = 4;
   map<string, google.protobuf.Value> extensions = 5;
 }
 
 // `Info` is a representation of OpenAPI v2 specification's Info object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#infoObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#infoObject
 //
 // TODO(ivucica): document fields
 message Info {
@@ -107,7 +115,8 @@ message Info {
 
 // `Contact` is a representation of OpenAPI v2 specification's Contact object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#contactObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#contactObject
 //
 // TODO(ivucica): document fields
 message Contact {
@@ -118,7 +127,8 @@ message Contact {
 
 // `License` is a representation of OpenAPI v2 specification's License object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#licenseObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#licenseObject
 //
 message License {
   // Required. The license name used for the API.
@@ -130,7 +140,8 @@ message License {
 // `ExternalDocumentation` is a representation of OpenAPI v2 specification's
 // ExternalDocumentation object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#externalDocumentationObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#externalDocumentationObject
 //
 // TODO(ivucica): document fields
 message ExternalDocumentation {
@@ -140,7 +151,8 @@ message ExternalDocumentation {
 
 // `Schema` is a representation of OpenAPI v2 specification's Schema object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#schemaObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#schemaObject
 //
 // TODO(ivucica): document fields
 message Schema {
@@ -158,7 +170,8 @@ message Schema {
 //
 // This includes changes made by OpenAPI v2.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#schemaObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#schemaObject
 //
 // See also: https://cswr.github.io/JsonSchema/spec/basic_types/,
 // https://github.com/json-schema-org/json-schema-spec/blob/master/schema.json
@@ -170,10 +183,9 @@ message JSONSchema {
   // field 2 is reserved for '$schema', omitted from OpenAPI v2.
   reserved 2;
   // Ref is used to define an external reference to include in the message.
-  // This could be a fully qualified proto message reference, and that type must be imported
-  // into the protofile. If no message is identified, the Ref will be used verbatim in
-  // the output.
-  // For example:
+  // This could be a fully qualified proto message reference, and that type must
+  // be imported into the protofile. If no message is identified, the Ref will
+  // be used verbatim in the output. For example:
   //  `ref: ".google.protobuf.Timestamp"`.
   string ref = 3;
   // field 4 is reserved for '$comment', omitted from OpenAPI v2.
@@ -182,7 +194,8 @@ message JSONSchema {
   string description = 6;
   string default = 7;
   bool read_only = 8;
-  // field 9 is reserved for 'examples', which is omitted from OpenAPI v2 in favor of 'example' field.
+  // field 9 is reserved for 'examples', which is omitted from OpenAPI v2 in
+  // favor of 'example' field.
   reserved 9;
   double multiple_of = 10;
   double maximum = 11;
@@ -194,7 +207,8 @@ message JSONSchema {
   string pattern = 17;
   // field 18 is reserved for 'additionalItems', omitted from OpenAPI v2.
   reserved 18;
-  // field 19 is reserved for 'items', but in OpenAPI-specific way. TODO(ivucica): add 'items'?
+  // field 19 is reserved for 'items', but in OpenAPI-specific way.
+  // TODO(ivucica): add 'items'?
   reserved 19;
   uint64 max_items = 20;
   uint64 min_items = 21;
@@ -204,14 +218,16 @@ message JSONSchema {
   uint64 max_properties = 24;
   uint64 min_properties = 25;
   repeated string required = 26;
-  // field 27 is reserved for 'additionalProperties', but in OpenAPI-specific way. TODO(ivucica): add 'additionalProperties'?
+  // field 27 is reserved for 'additionalProperties', but in OpenAPI-specific
+  // way. TODO(ivucica): add 'additionalProperties'?
   reserved 27;
   // field 28 is reserved for 'definitions', omitted from OpenAPI v2.
   reserved 28;
-  // field 29 is reserved for 'properties', but in OpenAPI-specific way. TODO(ivucica): add 'additionalProperties'?
+  // field 29 is reserved for 'properties', but in OpenAPI-specific way.
+  // TODO(ivucica): add 'additionalProperties'?
   reserved 29;
-  // following fields are reserved, as the properties have been omitted from OpenAPI v2:
-  // patternProperties, dependencies, propertyNames, const
+  // following fields are reserved, as the properties have been omitted from
+  // OpenAPI v2: patternProperties, dependencies, propertyNames, const
   reserved 30 to 33;
   // Items in 'array' must be unique.
   repeated string array = 34;
@@ -228,19 +244,21 @@ message JSONSchema {
   }
 
   repeated JSONSchemaSimpleTypes type = 35;
-  // following fields are reserved, as the properties have been omitted from OpenAPI v2:
-  // format, contentMediaType, contentEncoding, if, then, else
+  // following fields are reserved, as the properties have been omitted from
+  // OpenAPI v2: format, contentMediaType, contentEncoding, if, then, else
   reserved 36 to 41;
-  // field 42 is reserved for 'allOf', but in OpenAPI-specific way. TODO(ivucica): add 'allOf'?
+  // field 42 is reserved for 'allOf', but in OpenAPI-specific way.
+  // TODO(ivucica): add 'allOf'?
   reserved 42;
-  // following fields are reserved, as the properties have been omitted from OpenAPI v2:
-  // anyOf, oneOf, not
+  // following fields are reserved, as the properties have been omitted from
+  // OpenAPI v2: anyOf, oneOf, not
   reserved 43 to 45;
 }
 
 // `Tag` is a representation of OpenAPI v2 specification's Tag object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#tagObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#tagObject
 //
 // TODO(ivucica): document fields
 message Tag {
@@ -262,20 +280,23 @@ message Tag {
 // `SecurityDefinitions` is a representation of OpenAPI v2 specification's
 // Security Definitions object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#securityDefinitionsObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#securityDefinitionsObject
 //
 // A declaration of the security schemes available to be used in the
 // specification. This does not enforce the security schemes on the operations
 // and only serves to provide the relevant details for each scheme.
 message SecurityDefinitions {
-  // A single security scheme definition, mapping a "name" to the scheme it defines.
+  // A single security scheme definition, mapping a "name" to the scheme it
+  // defines.
   map<string, SecurityScheme> security = 1;
 }
 
 // `SecurityScheme` is a representation of OpenAPI v2 specification's
 // Security Scheme object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#securitySchemeObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#securitySchemeObject
 //
 // Allows the definition of a security scheme that can be used by the
 // operations. Supported schemes are basic authentication, an API key (either as
@@ -291,7 +312,8 @@ message SecurityScheme {
     TYPE_OAUTH2 = 3;
   }
 
-  // Required. The location of the API key. Valid values are "query" or "header".
+  // Required. The location of the API key. Valid values are "query" or
+  // "header".
   enum In {
     IN_INVALID = 0;
     IN_QUERY = 1;
@@ -317,7 +339,8 @@ message SecurityScheme {
   //
   // Valid for apiKey.
   string name = 3;
-  // Required. The location of the API key. Valid values are "query" or "header".
+  // Required. The location of the API key. Valid values are "query" or
+  // "header".
   //
   // Valid for apiKey.
   In in = 4;
@@ -346,7 +369,8 @@ message SecurityScheme {
 // `SecurityRequirement` is a representation of OpenAPI v2 specification's
 // Security Requirement object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#securityRequirementObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#securityRequirementObject
 //
 // Lists the required security schemes to execute this operation. The object can
 // have multiple security schemes declared in it which are all required (that
@@ -358,9 +382,7 @@ message SecurityRequirement {
   // If the security scheme is of type "oauth2", then the value is a list of
   // scope names required for the execution. For other security scheme types,
   // the array MUST be empty.
-  message SecurityRequirementValue {
-    repeated string scope = 1;
-  }
+  message SecurityRequirementValue { repeated string scope = 1; }
   // Each name must correspond to a security scheme which is declared in
   // the Security Definitions. If the security scheme is of type "oauth2",
   // then the value is a list of scope names required for the execution.
@@ -370,7 +392,8 @@ message SecurityRequirement {
 
 // `Scopes` is a representation of OpenAPI v2 specification's Scopes object.
 //
-// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#scopesObject
+// See:
+// https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#scopesObject
 //
 // Lists the available scopes for an OAuth2 security scheme.
 message Scopes {

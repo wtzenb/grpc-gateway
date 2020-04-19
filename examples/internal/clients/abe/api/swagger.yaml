@@ -2189,7 +2189,8 @@ definitions:
         items:
           type: "string"
           format: "int64"
-    title: "ABitOfEverythingRepeated is used to validate repeated path parameter functionality"
+    title: "ABitOfEverythingRepeated is used to validate repeated path parameter\n\
+      functionality"
     example:
       path_repeated_bool_value:
       - true

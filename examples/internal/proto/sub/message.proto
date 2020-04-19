@@ -2,6 +2,4 @@ syntax = "proto2";
 option go_package = "sub";
 package grpc.gateway.examples.internal.sub;
 
-message StringMessage {
-	required string value = 1;
-}
+message StringMessage { required string value = 1; }

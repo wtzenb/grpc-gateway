@@ -40,6 +40,14 @@ jobs:
       - run: make examples
       - run: go mod tidy
       - run: git diff --exit-code
+  proto_format:
+    docker:
+      - image: unibeautify/clang-format
+    working_directory: /src/grpc-gateway
+    steps:
+      - checkout
+      - run: find . -type f -name '*.proto' -exec clang-format -i {} +
+      - run: git diff --exit-code
   lint:
     docker:
       - image: jfbrandhorst/grpc-gateway-build-env:1.14
@@ -116,6 +124,7 @@ workflows:
       - node_test
       - generate
       - lint
+      - proto_format
       - bazel
       - gorelease
       - release:

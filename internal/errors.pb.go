@@ -24,7 +24,8 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 // Error is the generic error returned from unary RPCs.
 type Error struct {
 	Error string `protobuf:"bytes,1,opt,name=error,proto3" json:"error,omitempty"`
-	// This is to make the error more compatible with users that expect errors to be Status objects:
+	// This is to make the error more compatible with users that expect errors to
+	// be Status objects:
 	// https://github.com/grpc/grpc/blob/master/src/proto/grpc/status/status.proto
 	// It should be the exact same message as the Error field.
 	Code                 int32      `protobuf:"varint,2,opt,name=code,proto3" json:"code,omitempty"`

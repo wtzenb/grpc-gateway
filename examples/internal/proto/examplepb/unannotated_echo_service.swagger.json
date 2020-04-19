@@ -186,7 +186,7 @@
           "type": "string"
         }
       },
-      "description": "UnannotatedSimpleMessage represents a simple message sent to the unannotated Echo service."
+      "description": "UnannotatedSimpleMessage represents a simple message sent to the unannotated\nEcho service."
     },
     "protobufAny": {
       "type": "object",

@@ -141,7 +141,7 @@ definitions:
       duration:
         type: "string"
     description: "UnannotatedSimpleMessage represents a simple message sent to the\
-      \ unannotated Echo service."
+      \ unannotated\nEcho service."
     example:
       duration: "duration"
       num: "num"

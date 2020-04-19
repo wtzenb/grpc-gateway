@@ -282,33 +282,49 @@ const _ = grpc.SupportPackageIsVersion4
 type LoginServiceClient interface {
 	// Login
 	//
-	// {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
-	// It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+	// {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first :=
+	// true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}},
+	// {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service. It
+	// takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
 	//
 	// ## {{.RequestType.Name}}
-	// | Field ID    | Name      | Type                                                       | Description                  |
-	// | ----------- | --------- | ---------------------------------------------------------  | ---------------------------- | {{range .RequestType.Fields}}
-	// | {{.Number}} | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} | {{fieldcomments .Message .}} | {{end}}
+	// | Field ID    | Name      | Type | Description                  | |
+	// ----------- | --------- |
+	// ---------------------------------------------------------  |
+	// ---------------------------- | {{range .RequestType.Fields}} | {{.Number}}
+	// | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} |
+	// {{fieldcomments .Message .}} | {{end}}
 	//
 	// ## {{.ResponseType.Name}}
-	// | Field ID    | Name      | Type                                                       | Description                  |
-	// | ----------- | --------- | ---------------------------------------------------------- | ---------------------------- | {{range .ResponseType.Fields}}
-	// | {{.Number}} | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} | {{fieldcomments .Message .}} | {{end}}
+	// | Field ID    | Name      | Type | Description                  | |
+	// ----------- | --------- |
+	// ---------------------------------------------------------- |
+	// ---------------------------- | {{range .ResponseType.Fields}} | {{.Number}}
+	// | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} |
+	// {{fieldcomments .Message .}} | {{end}}
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginReply, error)
 	// Logout
 	//
-	// {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
-	// It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+	// {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first :=
+	// true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}},
+	// {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service. It
+	// takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
 	//
 	// ## {{.RequestType.Name}}
-	// | Field ID    | Name      | Type                                                       | Description                  |
-	// | ----------- | --------- | ---------------------------------------------------------  | ---------------------------- | {{range .RequestType.Fields}}
-	// | {{.Number}} | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} | {{fieldcomments .Message .}} | {{end}}
+	// | Field ID    | Name      | Type | Description                  | |
+	// ----------- | --------- |
+	// ---------------------------------------------------------  |
+	// ---------------------------- | {{range .RequestType.Fields}} | {{.Number}}
+	// | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} |
+	// {{fieldcomments .Message .}} | {{end}}
 	//
 	// ## {{.ResponseType.Name}}
-	// | Field ID    | Name      | Type                                                       | Description                  |
-	// | ----------- | --------- | ---------------------------------------------------------- | ---------------------------- | {{range .ResponseType.Fields}}
-	// | {{.Number}} | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} | {{fieldcomments .Message .}} | {{end}}
+	// | Field ID    | Name      | Type | Description                  | |
+	// ----------- | --------- |
+	// ---------------------------------------------------------- |
+	// ---------------------------- | {{range .ResponseType.Fields}} | {{.Number}}
+	// | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} |
+	// {{fieldcomments .Message .}} | {{end}}
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutReply, error)
 }
 
@@ -342,33 +358,49 @@ func (c *loginServiceClient) Logout(ctx context.Context, in *LogoutRequest, opts
 type LoginServiceServer interface {
 	// Login
 	//
-	// {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
-	// It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+	// {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first :=
+	// true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}},
+	// {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service. It
+	// takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
 	//
 	// ## {{.RequestType.Name}}
-	// | Field ID    | Name      | Type                                                       | Description                  |
-	// | ----------- | --------- | ---------------------------------------------------------  | ---------------------------- | {{range .RequestType.Fields}}
-	// | {{.Number}} | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} | {{fieldcomments .Message .}} | {{end}}
+	// | Field ID    | Name      | Type | Description                  | |
+	// ----------- | --------- |
+	// ---------------------------------------------------------  |
+	// ---------------------------- | {{range .RequestType.Fields}} | {{.Number}}
+	// | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} |
+	// {{fieldcomments .Message .}} | {{end}}
 	//
 	// ## {{.ResponseType.Name}}
-	// | Field ID    | Name      | Type                                                       | Description                  |
-	// | ----------- | --------- | ---------------------------------------------------------- | ---------------------------- | {{range .ResponseType.Fields}}
-	// | {{.Number}} | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} | {{fieldcomments .Message .}} | {{end}}
+	// | Field ID    | Name      | Type | Description                  | |
+	// ----------- | --------- |
+	// ---------------------------------------------------------- |
+	// ---------------------------- | {{range .ResponseType.Fields}} | {{.Number}}
+	// | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} |
+	// {{fieldcomments .Message .}} | {{end}}
 	Login(context.Context, *LoginRequest) (*LoginReply, error)
 	// Logout
 	//
-	// {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
-	// It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+	// {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first :=
+	// true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}},
+	// {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service. It
+	// takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
 	//
 	// ## {{.RequestType.Name}}
-	// | Field ID    | Name      | Type                                                       | Description                  |
-	// | ----------- | --------- | ---------------------------------------------------------  | ---------------------------- | {{range .RequestType.Fields}}
-	// | {{.Number}} | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} | {{fieldcomments .Message .}} | {{end}}
+	// | Field ID    | Name      | Type | Description                  | |
+	// ----------- | --------- |
+	// ---------------------------------------------------------  |
+	// ---------------------------- | {{range .RequestType.Fields}} | {{.Number}}
+	// | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} |
+	// {{fieldcomments .Message .}} | {{end}}
 	//
 	// ## {{.ResponseType.Name}}
-	// | Field ID    | Name      | Type                                                       | Description                  |
-	// | ----------- | --------- | ---------------------------------------------------------- | ---------------------------- | {{range .ResponseType.Fields}}
-	// | {{.Number}} | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} | {{fieldcomments .Message .}} | {{end}}
+	// | Field ID    | Name      | Type | Description                  | |
+	// ----------- | --------- |
+	// ---------------------------------------------------------- |
+	// ---------------------------- | {{range .ResponseType.Fields}} | {{.Number}}
+	// | {{.Name}} | {{if eq .Label.String "LABEL_REPEATED"}}[]{{end}}{{.Type}} |
+	// {{fieldcomments .Message .}} | {{end}}
 	Logout(context.Context, *LogoutRequest) (*LogoutReply, error)
 }
 
