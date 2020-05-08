@@ -2,63 +2,135 @@ package runtime
 
 import (
 	"bytes"
-	"fmt"
 	"testing"
 
+	"github.com/google/go-cmp/cmp"
+	"github.com/google/go-cmp/cmp/cmpopts"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime/internal/examplepb"
 	"google.golang.org/genproto/protobuf/field_mask"
+	"google.golang.org/protobuf/reflect/protoreflect"
 )
-
-func fieldMasksEqual(fm1, fm2 *field_mask.FieldMask) bool {
-	if fm1 == nil && fm2 == nil {
-		return true
-	}
-	if fm1 == nil || fm2 == nil {
-		return false
-	}
-	if len(fm1.GetPaths()) != len(fm2.GetPaths()) {
-		return false
-	}
-
-	paths := make(map[string]bool)
-	for _, path := range fm1.GetPaths() {
-		paths[path] = true
-	}
-	for _, path := range fm2.GetPaths() {
-		if _, ok := paths[path]; !ok {
-			return false
-		}
-	}
-
-	return true
-}
 
 func newFieldMask(paths ...string) *field_mask.FieldMask {
 	return &field_mask.FieldMask{Paths: paths}
-}
-
-func fieldMaskString(fm *field_mask.FieldMask) string {
-	if fm == nil {
-		return ""
-	}
-	return fmt.Sprintf("%v", fm.GetPaths())
 }
 
 func TestFieldMaskFromRequestBody(t *testing.T) {
 	for _, tc := range []struct {
 		name        string
 		input       string
+		msg         protoreflect.Message
 		expected    *field_mask.FieldMask
 		expectedErr error
 	}{
-		{name: "empty", expected: newFieldMask()},
-		{name: "simple", input: `{"foo":1, "bar":"baz"}`, expected: newFieldMask("foo", "bar")},
-		{name: "nested", input: `{"foo": {"bar":1, "baz": 2}, "qux": 3}`, expected: newFieldMask("foo.bar", "foo.baz", "qux")},
-		{name: "canonical", input: `{"f": {"b": {"d": 1, "x": 2}, "c": 1}}`, expected: newFieldMask("f.b.d", "f.b.x", "f.c")},
+		{
+			name:     "empty",
+			expected: newFieldMask(),
+		},
+		{
+			name:     "simple",
+			input:    `{"uuid":"1234", "floatValue":3.14}`,
+			msg:      (&examplepb.ABitOfEverything{}).ProtoReflect(),
+			expected: newFieldMask("uuid", "float_value"),
+		},
+		{
+			name:     "nested",
+			input:    `{"single_nested": {"name":"bob", "amount": 2}, "uuid":"1234"}`,
+			msg:      (&examplepb.ABitOfEverything{}).ProtoReflect(),
+			expected: newFieldMask("single_nested.name", "single_nested.amount", "uuid"),
+		},
+		{
+			name:     "map",
+			input:    `{"mapped_string_value": {"a": "x"}}`,
+			msg:      (&examplepb.ABitOfEverything{}).ProtoReflect(),
+			expected: newFieldMask("mapped_string_value"),
+		},
+		{
+			name: "complex",
+			input: `
+			{
+				"single_nested": {
+					"name": "bar",
+					"amount": 10,
+					"ok": "TRUE"
+				},
+				"uuid": "6EC2446F-7E89-4127-B3E6-5C05E6BECBA7",
+				"nested": [
+					{
+						"name": "bar",
+						"amount": 10
+					},
+					{
+						"name": "baz",
+						"amount": 20
+					}
+				],
+				"float_value": 1.5,
+				"double_value": 2.5,
+				"int64_value": 4294967296,
+				"int64_override_type": 12345,
+				"int32_value": -2147483648,
+				"uint64_value": 9223372036854775807,
+				"uint32_value": 4294967295,
+				"fixed64_value": 9223372036854775807,
+				"fixed32_value": 4294967295,
+				"sfixed64_value": -4611686018427387904,
+				"sfixed32_value": 2147483647,
+				"sint64_value": 4611686018427387903,
+				"sint32_value": 2147483647,
+				"bool_value": true,
+				"string_value": "strprefix/foo",
+				"bytes_value": "132456",
+				"enum_value": "ONE",
+				"oneof_string": "x",
+				"nonConventionalNameValue": "camelCase",
+				"timestamp_value": "2016-05-10T10:19:13.123Z",
+				"enum_value_annotation": "ONE",
+				"nested_annotation": {
+					"name": "hoge",
+					"amount": 10
+				}
+			}
+`,
+			msg: (&examplepb.ABitOfEverything{}).ProtoReflect(),
+			expected: newFieldMask(
+				"single_nested.name",
+				"single_nested.amount",
+				"single_nested.ok",
+				"uuid",
+				"float_value",
+				"double_value",
+				"int64_value",
+				"int64_override_type",
+				"int32_value",
+				"uint64_value",
+				"uint32_value",
+				"fixed64_value",
+				"fixed32_value",
+				"sfixed64_value",
+				"sfixed32_value",
+				"sint64_value",
+				"sint32_value",
+				"bool_value",
+				"string_value",
+				"bytes_value",
+				"enum_value",
+				"oneof_string",
+				"nonConventionalNameValue",
+				"timestamp_value",
+				"enum_value_annotation",
+				"nested_annotation.name",
+				"nested_annotation.amount",
+				"nested",
+			),
+		},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
-			actual, err := FieldMaskFromRequestBody(bytes.NewReader([]byte(tc.input)), nil)
-			if !fieldMasksEqual(actual, tc.expected) {
-				t.Errorf("want %v; got %v", fieldMaskString(tc.expected), fieldMaskString(actual))
+			actual, err := FieldMaskFromRequestBody(bytes.NewReader([]byte(tc.input)), tc.msg)
+			if diff := cmp.Diff(tc.expected, actual, cmpopts.SortSlices(func(x, y string) bool {
+				return x < y
+			})); diff != "" {
+				t.Errorf("field masks differed:\n%s", diff)
 			}
 			if err != tc.expectedErr {
 				t.Errorf("want %v; got %v", tc.expectedErr, err)
